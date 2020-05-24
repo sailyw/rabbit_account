@@ -1,15 +1,14 @@
 <template>
   <div>
-    statics
-    <Nav />
+    <Layout>统计sc</Layout>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({});
+export default {
+  name: "Statistics"
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>
