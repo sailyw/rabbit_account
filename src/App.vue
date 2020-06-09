@@ -11,6 +11,7 @@ body{
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
   color: #333;
 }
 </style>
