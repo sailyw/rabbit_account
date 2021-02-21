@@ -4,13 +4,14 @@ const path = require('path')
 module.exports = {
   lintOnSave: false,
   chainWebpack: config =>{
+    // 确定svg目录
     const dir = path.resolve(__dirname, 'src/assets/icons')
 
     config.module
       .rule('svg-sprite')
       .test(/\.svg$/)
-      .include.add(dir).end() // 包含 icons 目录
-      .use('svg-sprite-loader').loader('svg-sprite-loader').options({extract:false}).end()
+      .include.add(dir).end() // 只包含 icons 目录中的svg
+      .use('svg-sprite-loader').loader('svg-sprite-loader').options({extract:false}).end()//extract:false不要解析出文件来
       .use('svgo-loader').loader('svgo-loader')
       .tap(options => ({...options, plugins: [{removeAttrs: {attrs: 'fill'}}]}))
       .end()

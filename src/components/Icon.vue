@@ -6,6 +6,7 @@
 
 <script lang="ts">
 // 这样不用一个一个单独引入svg,将一个目录里面任意后缀的文件，统一全部引入到当前文件
+// typeScript要求必须要告诉是什么类型 requireContext的类型为 __WebpackModuleApi.RequireContext
 // eslint-disable-next-line prefer-const
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) =>
   requireContext.keys().forEach(requireContext);
