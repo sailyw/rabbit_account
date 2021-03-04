@@ -15,14 +15,20 @@ import { Component,Prop } from 'vue-property-decorator';
 //装饰器
 @Component
 export default class Types extends Vue{
+  @Prop() readonly type!: string
   //对应声明data
-  type='-'; //'-'表示支出，+表示收入
+  // type='-'; //'-'表示支出，+表示收入
   selectType(type: string) {
       if (type !== "-" && type !== "+") {
         throw new Error("type is unknown");
       }
-      this.type = type;
+      this.$emit("update:value",type)
+      // this.type = type;
   }
+  // @Watch("type")
+  // onTypeChanged(value:string){
+  //   this.$emit("update:value",value)
+  // }
 }
 </script>
 
