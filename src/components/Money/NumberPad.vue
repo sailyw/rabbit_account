@@ -13,8 +13,8 @@
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @click ="ok" class="ok">OK</button>
-      <button class="zero"  @click="inputContent">0</button>
+      <button @click="ok" class="ok">OK</button>
+      <button class="zero" @click="inputContent">0</button>
       <button @click="inputContent">.</button>
     </div>
   </div>
@@ -44,22 +44,25 @@ export default class NumberPad extends Vue {
       return;
     }
     // 当有.时
-    if (this.output.indexOf(".") >= 0&&input==='.') {return; }
+    if (this.output.indexOf(".") >= 0 && input === ".") {
+      return;
+    }
     this.output += input;
   }
-  remove(){
-    if(this.output.length ===1){
-      this.output ='0'
-    }else{
-      this.output =this.output.slice(0,-1)
+  remove() {
+    if (this.output.length === 1) {
+      this.output = "0";
+    } else {
+      this.output = this.output.slice(0, -1);
     }
   }
-  clear(){
-    this.output='0'
+  clear() {
+    this.output = "0";
   }
-  ok(){
+  ok() {
     console.log("ok");
-    this.$emit("update:value",this.output)
+    this.$emit("update:value", this.output);
+    this.$emit("submit", this.output);
   }
 }
 </script>
