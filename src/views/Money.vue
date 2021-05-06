@@ -1,7 +1,7 @@
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
-    <NumberPad @update:value="onUpdateAmount" @submit="saveRecord" />
+    <!-- {{ recordList }} -->
+    <NumberPad :value.sync="record.amount" @submit="saveRecord" />
     <Types :value.sync="record.type" />
     <Notes @update:value="onUpdateNotes" />
     <Tags :data-source.sync="tags" @update:value="onUpdateTags" />
@@ -15,21 +15,29 @@ import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
+// 在ts中引用js,使用require导入进来，如果是export default 则后面写.default,如果不是则直接析构如下面
+// const { model } = require("@/model.js");
+// const model = require("@/model.js").default;
+// const recordList: Record[] = model.fetch();
 
-type Record = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount: number;
-};
+import model from "@/model";
+const recordList = model.fetch();
+
+// type RecordItem = {
+//   tags: string[];
+//   notes: string;
+//   type: string;
+//   amount: number; //数据类型 object | string
+//   createdAt?: Date; //类 /构造函数----> ?代表可以不存在
+// };
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
   tags = ["食", "住", "行"];
-  recordList: Record[] = [];
-  record: Record = {
+  recordList: RecordItem[] = recordList;
+  record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
@@ -50,13 +58,14 @@ export default class Money extends Vue {
   }
   saveRecord() {
     //进行深拷贝
-    const record2 = JSON.parse(JSON.stringify(this.record));
+    const record2: RecordItem = model.clone(this.record);
+    record2.createdAt = new Date();
     this.recordList.push(record2);
-    console.log(this.recordList);
   }
   @Watch("recordList")
   onRecordListChange() {
-    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    // window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    model.save(this.recordList);
   }
 }
 </script>
