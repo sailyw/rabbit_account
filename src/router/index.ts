@@ -27,7 +27,7 @@ const routes = [
         component: Statistics,
     },
     {//编辑标签
-        path: "/labels/edit",
+        path: "/labels/edit/:id",
         component: EditLabel,
     },
     // 匹配所有
