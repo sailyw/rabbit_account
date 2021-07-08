@@ -13,5 +13,6 @@ body {
   -moz-osx-font-smoothing: grayscale; //大部分在苹果上
   font-size: 16px;
   color: #333;
+  background: #f5f5f5;
 }
 </style>

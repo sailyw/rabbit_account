@@ -1,5 +1,5 @@
 const localStorageKeyName = 'recordList';
-const model = {
+const recordListModel = {
     //克隆 可以传一个数组也可以传其中的一项
     clone(data: RecordItem[] | RecordItem) {
         return JSON.parse(JSON.stringify(data));
@@ -15,4 +15,4 @@ const model = {
     }
 };
 
-export default model;
+export default recordListModel;
