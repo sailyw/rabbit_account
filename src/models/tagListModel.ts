@@ -4,8 +4,8 @@ type Tag = {
     name: string;
 }
 type TagListModel = {
-    data: string[];
-    fetch: () => string[];
+    data: Tag[];
+    fetch: () => Tag[];
     create: (name: string) => 'success' | 'duplicated';//联合类型
     save: () => void;//void代表没用返回值
 }
@@ -19,9 +19,10 @@ const tagListModel: TagListModel = {
     },
     //创建tag
     create(name) {
-        if (this.data.indexOf(name) >= 0) { return 'duplicated' }
-
-        this.data.push(name);
+        // this.data =[{id:"1",name:"1"},{id:"2",name:"2"}]
+        const names = this.data.map(item => item.name);
+        if (names.indexOf(name) >= 0) { return 'duplicated' }
+        this.data.push({ id: name, name: name });//由于id没有取数据库没法自增，只能取name
         this.save()
         return "success";
     },
