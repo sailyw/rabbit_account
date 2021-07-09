@@ -13,7 +13,7 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class FormItem extends Vue {
-  value = "";
+  @Prop({ default: "" }) value!: string; //！代表不用检查是否存在
 
   @Prop({ required: true }) fieldName!: string;
   @Prop() placeholder?: string; //?表示有可能不存在
