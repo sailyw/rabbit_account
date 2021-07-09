@@ -3,7 +3,12 @@
     <label class="formItem">
       <span class="name">{{ this.fieldName }}</span>
       <!-- <input type="text" :value="value" @input="onInput" placeholder="在这里输入备注" /> -->
-      <input type="text" v-model="value" :placeholder="this.placeholder" />
+      <input
+        type="text"
+        :value="value"
+        @input="onValueChanged($event.target.value)"
+        :placeholder="this.placeholder"
+      />
     </label>
   </div>
 </template>
@@ -13,7 +18,7 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class FormItem extends Vue {
-  @Prop({ default: "" }) value!: string; //！代表不用检查是否存在
+  @Prop({ default: "" }) readonly value!: string; //！代表不用检查是否存在
 
   @Prop({ required: true }) fieldName!: string;
   @Prop() placeholder?: string; //?表示有可能不存在
