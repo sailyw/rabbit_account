@@ -16,6 +16,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
+
 @Component
 export default class FormItem extends Vue {
   @Prop({ default: "" }) readonly value!: string; //！代表不用检查是否存在
