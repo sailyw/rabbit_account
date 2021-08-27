@@ -21,4 +21,9 @@ type TagListModel = {
 interface Window {
     tagList: Tag[];
     createTag: (name: string) => void;
+    findTag: (id: string) => Tag | undefined;
+    removeTag: (id: string) => boolean;
+    //由于和上面TagListModel中的update返回值一模一样，可不用如此繁琐
+    // updateTag: (id: string, name: string) => 'success' | 'not found' | 'duplicated';
+    updateTag: TagListModel["update"];
 }

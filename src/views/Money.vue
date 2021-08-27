@@ -32,9 +32,6 @@ import { Component, Watch } from "vue-property-decorator";
 import recordListModel from "@/models/recordListModel";
 const recordList = recordListModel.fetch();
 
-import tagListModel from "@/models/tagListModel";
-// const tagList = tagListModel.fetch();
-
 // type RecordItem = {
 //   tags: string[];
 //   notes: string;
