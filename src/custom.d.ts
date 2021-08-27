@@ -26,4 +26,6 @@ interface Window {
     //由于和上面TagListModel中的update返回值一模一样，可不用如此繁琐
     // updateTag: (id: string, name: string) => 'success' | 'not found' | 'duplicated';
     updateTag: TagListModel["update"];
+    recordList: RecordItem[];
+    createRecord: (record: RecordItem) => void;
 }
